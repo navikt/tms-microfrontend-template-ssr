@@ -1,0 +1,16 @@
+---
+import { BodyLong } from '@navikt/ds-react';
+import { exampleApiUrl } from '@src/utils/server/urls';
+import type { Language } from '@src/language/language';
+import { text } from '@src/language/text';
+
+const exampleData: any = await fetch(exampleApiUrl)
+  .then((response) => response.json())
+  .then((data) => data);
+
+const language = Astro.currentLocale as Language;
+---
+
+<BodyLong>
+  {text.name[language]}: {exampleData.name}
+</BodyLong>
