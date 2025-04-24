@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "husky",
-    "prettier": "prettier --write './src/**/*.{ts,tsx,astro}'"  
+    "prettier": "prettier --write './src/**/*.{ts,tsx,astro}'"
   },
   "dependencies": {
     "@amplitude/analytics-browser": "2.5.3",
@@ -37,7 +37,7 @@
     "hono": "4.4.2",
     "husky": "^9.1.7",
     "tsx": "4.7.1",
-    "prettier": "3.3.3",   
+    "prettier": "3.3.3",
     "typescript": "5.3.3"
   }
 }
