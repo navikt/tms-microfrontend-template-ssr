@@ -6,11 +6,6 @@ metadata:
   labels:
     team: min-side
 spec:
-  idporten:
-    enabled: true
-    sidecar:
-      enabled: true
-      level: Level3
   tokenx:
     enabled: true
   image: {{ image }}
