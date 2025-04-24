@@ -1,16 +1,12 @@
 import { defineMiddleware } from 'astro/middleware';
-import { loginUrl } from './urls';
-import { isInternal } from './utils';
 import { isLocal } from '@src/utils/server/urls';
-import { getToken, validateToken } from '@navikt/oasis';
-import { localToken } from '@src/utils/server/token';
+import { isInternal } from '../utils/server/auth';
+import { getToken, validateTokenxToken } from '@navikt/oasis';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const token = getToken(context.request.headers);
-  const params = encodeURIComponent(context.url.search);
 
   if (isLocal) {
-    context.locals.token = await localToken({ pid: '12345678912' });
     return next();
   }
 
@@ -19,20 +15,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   if (!token) {
-    console.info(
-      'Could not find any bearer token on the request. Redirecting to login.',
-    );
-    return context.redirect(`${loginUrl}${params}`);
+    console.info('Could not find any bearer token on the request.');
+    return new Response(null, { status: 401 });
   }
 
-  const validation = await validateToken(token);
+  const validation = await validateTokenxToken(token);
 
   if (!validation.ok) {
     const error = new Error(
-      `Invalid JWT token found (cause: ${validation.errorType} ${validation.error}, redirecting to login.`,
+      `Invalid JWT token found (cause: ${validation.errorType} ${validation.error}.`,
     );
     console.error(error);
-    return context.redirect(`${loginUrl}${params}`);
+    return new Response(null, { status: 401 });
   }
 
   context.locals.token = token;
