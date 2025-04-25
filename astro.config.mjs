@@ -1,26 +1,38 @@
-import { defineConfig } from "astro/config";
-import { rollupImportMapPlugin } from "rollup-plugin-import-map";
-import importmap from "./importmap.json";
-import react from "@astrojs/react";
-import node from "@astrojs/node";
+import { defineConfig } from 'astro/config';
+import { rollupImportMapPlugin } from 'rollup-plugin-import-map';
+import importmap from './importmap.json';
+import react from '@astrojs/react';
+import node from '@astrojs/node';
+import prefixer from 'postcss-prefix-selector';
 
 // https://astro.build/config
 export default defineConfig({
-  base: "/tms-astro-template", // The base path of your site. Useful for projects hosted under subpaths.
+  base: '/tms-microfrontend-test',
   build: {
-    assetsPrefix: "https://cdn.nav.no/min-side/tms-astro-template", // Change this to your CDN prefix
+    assetsPrefix: 'https://cdn.nav.no/min-side/tms-microfrontend-test',
+  },
+  vite: {
+    css: {
+      postcss: {
+        plugins: [
+          prefixer({
+            prefix: '.tms-microfrontend-test',
+          }),
+        ],
+      },
+    },
   },
   integrations: [
     react(),
     {
-      name: "importmap",
+      name: 'importmap',
       hooks: {
-        "astro:build:setup": ({ vite, target }) => {
-          if (target === "client") {
+        'astro:build:setup': ({ vite, target }) => {
+          if (target === 'client') {
             vite.plugins.push({
               ...rollupImportMapPlugin(importmap),
-              enforce: "pre",
-              apply: "build",
+              enforce: 'pre',
+              apply: 'build',
             });
           }
         },
@@ -28,14 +40,14 @@ export default defineConfig({
     },
   ],
   i18n: {
-    defaultLocale: "nb",
-    locales: ["nb", "nn", "en"],
+    defaultLocale: 'nb',
+    locales: ['nb', 'nn', 'en'],
     routing: {
       prefixDefaultLocale: false,
     },
   },
-  output: "server",
+  output: 'server',
   adapter: node({
-    mode: "standalone",
-  })
+    mode: 'standalone',
+  }),
 });
