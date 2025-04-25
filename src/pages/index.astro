@@ -1,21 +1,19 @@
 ---
 import { text } from '../language/text';
-import Layout from '../layouts/Layout.astro';
 import { Heading } from '@navikt/ds-react';
-import type { Language } from '../language/language';
-import AstroIslandExample from '@src/components/astro-island/AstroIsland.astro';
+import ClientIsland from '../components/ClientIsland';
+import type { Language } from '../types';
+import styles from './_index.module.css';
+import './_ds.css';
 
 const language = Astro.currentLocale as Language;
-console.error('Neverlucky i index');
 ---
 
-<Layout>
-  <div>
-    <div>
-      <Heading size={'large'}>
-        {text.title[language]}
-      </Heading>
-    </div>
+<section class="tms-microfrontend-test">
+  <div class={styles.microfrontend}>
+    <Heading size="medium" level="2">
+      {text.title[language]}
+    </Heading>
+    <ClientIsland client:only="react" />
   </div>
-  <AstroIslandExample server:defer />
-</Layout>
+</section>
