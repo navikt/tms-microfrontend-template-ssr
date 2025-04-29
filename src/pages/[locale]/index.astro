@@ -1,19 +1,21 @@
 ---
-import { Heading, BodyShort } from "@navikt/ds-react";
-import { text } from "@src/language/text";
-import ClientIsland from "@src/components/ClientIsland";
-import type { Language } from "@src/types";
-import styles from "../_index.module.css";
-import { exampleApiUrl } from "@src/utils/server/urls";
-import "../_ds.css";
+import { Heading, BodyShort } from '@navikt/ds-react';
+import { text } from '@src/language/text';
+import ClientIsland from '@src/components/ClientIsland';
+import type { Language } from '@src/types';
+import styles from '../_index.module.css';
+import { exampleApiUrl } from '@src/utils/server/urls';
+import pino from 'pino-http';
+import '../_ds.css';
 
 let isError: boolean = false;
+const logger = pino().logger;
 
 const exampleData: any = await fetch(exampleApiUrl)
   .then((response) => response.json())
   .then((data) => data)
   .catch((error) => {
-    console.error("Error fetching example data:", error);
+    logger.error('Error fetching example data:', error);
     isError = true;
   });
 
