@@ -17,6 +17,7 @@ export default defineConfig({
         plugins: [
           prefixer({
             prefix: '.tms-microfrontend-test',
+            ignoreFiles: [/module.css/],
           }),
         ],
       },

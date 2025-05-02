@@ -24,7 +24,7 @@ const language = Astro.currentLocale as Language;
 ---
 
 {
-  isError ? null : (
+  !isError ? (
     <section class="tms-microfrontend-test">
       <div class={styles.microfrontend}>
         <Heading size="medium" level="2">
@@ -36,5 +36,5 @@ const language = Astro.currentLocale as Language;
         <ClientIsland client:only="react" />
       </div>
     </section>
-  )
+  ) : null
 }
