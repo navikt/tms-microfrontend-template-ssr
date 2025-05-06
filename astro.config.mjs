@@ -1,22 +1,22 @@
-import { defineConfig } from 'astro/config';
-import { rollupImportMapPlugin } from 'rollup-plugin-import-map';
-import importmap from './importmap.json';
-import react from '@astrojs/react';
-import node from '@astrojs/node';
-import prefixer from 'postcss-prefix-selector';
+import { defineConfig } from "astro/config";
+import { rollupImportMapPlugin } from "rollup-plugin-import-map";
+import importmap from "./importmap.json";
+import react from "@astrojs/react";
+import node from "@astrojs/node";
+import prefixer from "postcss-prefix-selector";
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/tms-microfrontend-test',
+  base: "/tms-microfrontend-test",
   build: {
-    assetsPrefix: 'https://cdn.nav.no/min-side/tms-microfrontend-test',
+    assetsPrefix: "https://cdn.nav.no/min-side/tms-microfrontend-test",
   },
   vite: {
     css: {
       postcss: {
         plugins: [
           prefixer({
-            prefix: '.tms-microfrontend-test',
+            prefix: ".tms-microfrontend-test",
             ignoreFiles: [/module.css/],
           }),
         ],
@@ -26,14 +26,14 @@ export default defineConfig({
   integrations: [
     react(),
     {
-      name: 'importmap',
+      name: "importmap",
       hooks: {
-        'astro:build:setup': ({ vite, target }) => {
-          if (target === 'client') {
+        "astro:build:setup": ({ vite, target }) => {
+          if (target === "client") {
             vite.plugins.push({
               ...rollupImportMapPlugin(importmap),
-              enforce: 'pre',
-              apply: 'build',
+              enforce: "pre",
+              apply: "build",
             });
           }
         },
@@ -41,14 +41,14 @@ export default defineConfig({
     },
   ],
   i18n: {
-    defaultLocale: 'nb',
-    locales: ['nb', 'nn', 'en'],
+    defaultLocale: "nb",
+    locales: ["nb", "nn", "en"],
     routing: {
-      prefixDefaultLocale: false,
+      prefixDefaultLocale: true,
     },
   },
-  output: 'server',
+  output: "server",
   adapter: node({
-    mode: 'standalone',
+    mode: "standalone",
   }),
 });

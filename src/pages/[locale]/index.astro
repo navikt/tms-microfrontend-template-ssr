@@ -4,12 +4,12 @@ import { text } from "@src/language/text";
 import ClientIsland from "@src/components/ClientIsland";
 import type { Language } from "@src/types";
 import styles from "../_index.module.css";
-import { exampleApiUrl } from "@src/utils/server/urls";
 import pino from "pino-http";
 import "../_ds.css";
 
 let isError: boolean = false;
 const logger = pino().logger;
+const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
 
 const exampleData: any = await fetch(exampleApiUrl)
   .then((response) => response.json())

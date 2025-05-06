@@ -28,3 +28,5 @@ jspm_packages/
 
 # Astro files
 .astro/
+
+todos.txt

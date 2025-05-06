@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --mode locals",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build --mode locals",
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
     "astro": "astro",
