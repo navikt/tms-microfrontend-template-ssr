@@ -78,7 +78,9 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    needs: build & update-manifest-dev-gcp
+    needs:
+      - build
+      - update-manifest-dev-gcp
     strategy:
       matrix:
         cluster: [ dev-gcp ]
@@ -97,7 +99,9 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    needs: build & update-manifest-prod-gcp
+    needs:
+      - build
+      - update-manifest-prod-gcp
     strategy:
       matrix:
         cluster: [ prod-gcp ]
