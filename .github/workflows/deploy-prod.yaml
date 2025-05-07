@@ -1,9 +1,8 @@
-name: "Deploy dev&prod"
+name: "Deploy prod"
 on:
   push:
     branches:
       - "main"
-      - "dev-*"
 
 jobs:
   build:
@@ -51,7 +50,7 @@ jobs:
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
-  update-manifest-dev-gcp:
+  update-manifest-prod-gcp:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
@@ -62,37 +61,7 @@ jobs:
       ssr: true
     secrets: inherit
 
-  update-manifest-prod-gcp:
-    if: github.ref == 'refs/heads/main'
-    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
-    needs: build
-    with:
-      cluster: prod-gcp
-      id: "tms-microfrontend-template-ssr"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
-      commitmsg: ${{ github.event.head_commit.message}}
-    secrets: inherit
-
   deploy-dev:
-    runs-on: "ubuntu-latest"
-    permissions:
-      contents: "read"
-      id-token: "write"
-    needs: build
-    strategy:
-      matrix:
-        cluster: [ dev-gcp ]
-    steps:
-      - uses: "actions/checkout@v4"
-      - name: "Deploy to dev"
-        uses: "nais/deploy/actions/deploy@v2"
-        env:
-          CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
-          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
-
-  deploy-prod:
-    if: github.ref == "refs/heads/main"
     runs-on: "ubuntu-latest"
     permissions:
       contents: "read"
@@ -108,4 +77,4 @@ jobs:
         env:
           CLUSTER: ${{ matrix.cluster }}
           RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
-          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          
+          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}

@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: tms-astro-template
+  name: tms-microfrontend-template-ssr
   namespace: min-side
   labels:
     team: min-side
@@ -11,24 +11,26 @@ spec:
   image: {{ image }}
   port: 3000
   liveness:
-    path: /tms-astro-template/api/internal/isAlive
+    path: /tms-microfrontend-template-ssr/api/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /tms-astro-template/api/internal/isReady
+    path: /tms-microfrontend-template-ssr/api/internal/isReady
     initialDelay: 10
   replicas:
     min: 2
     max: 4
   accessPolicy:
-    outbound:
+    inbound:
       rules:
-        - application: nav-dekoratoren
-          namespace: personbruker
+        - application: tms-min-side
   ingresses:
-    - "https://www.nav.no/tms-astro-template"
+    - "https://www.nav.no/tms-microfrontend-template-ssr"
   resources:
     limits:
       memory: 768Mi
     requests:
       cpu: "20m"
       memory: 128Mi
+  env:
+    - name: EXAMPLE_API_URL
+      value: "https://example.dev.nav.no/api"
