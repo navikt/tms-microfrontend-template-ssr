@@ -1,14 +1,5 @@
-const isDevelopment = process.env.NAIS_CLUSTER_NAME === "dev-gcp";
+import type { APIContext } from "astro";
+
+export const isInternal = (context: APIContext) => context.request.url.includes("/internal");
+
 export const isLocal = process.env.NODE_ENV === "development";
-
-export const getEnvironment = () => {
-  if (isDevelopment) {
-    return "dev";
-  }
-
-  if (isLocal) {
-    return "dev";
-  }
-
-  return "prod";
-};
