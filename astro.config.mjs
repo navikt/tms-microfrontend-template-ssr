@@ -16,7 +16,7 @@ export default defineConfig({
       postcss: {
         plugins: [
           prefixer({
-            prefix: ".tms-microfrontend-test",
+            prefix: ".tms-microfrontend-template-ssr",
             ignoreFiles: [/module.css/],
           }),
         ],
