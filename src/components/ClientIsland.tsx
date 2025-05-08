@@ -1,4 +1,5 @@
-// If your microfrontend contains an interactive element—also called a client-side island—you may implement as demonstrated in the example below.
+// If your microfrontend contains an interactive element—also called a client-side island—you may implement as
+// demonstrated in the example below.
 
 import { Button } from "@navikt/ds-react";
 
