@@ -1,11 +1,11 @@
 ---
+import pino from "pino-http";
 import { Heading, BodyShort } from "@navikt/ds-react";
 import { text } from "@src/language/text";
 import ClientIsland from "@src/components/ClientIsland";
 import type { Language } from "@src/types";
-import styles from "../../styles/index.module.css";
-import pino from "pino-http";
-import "../../styles/aksel.css";
+import styles from "@src/styles/index.module.css";
+import "@src/styles/aksel.css";
 
 let isError: boolean = false;
 const logger = pino().logger;
