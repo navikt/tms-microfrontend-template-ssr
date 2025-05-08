@@ -55,9 +55,11 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      cluster: dev-gcp
       id: "tms-microfrontend-template-ssr"
       url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
+      appname: "tms-microfrontend-template-ssr"
+      namespace: "min-side"
+      cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
       ssr: true
     secrets: inherit
@@ -67,10 +69,13 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      cluster: prod-gcp
-      id: "tms-microfrontend-template-ssr"
+      id: "tms-microfrontend-template-ssr-id"
       url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
+      name: "tms-microfrontend-template-ssr"
+      namespace: "team-namespace"
+      cluster: prod-gcp
       commitmsg: ${{ github.event.head_commit.message}}
+      ssr: true
     secrets: inherit
 
   deploy-dev:
