@@ -1,5 +1,5 @@
 import { defineMiddleware } from "astro/middleware";
-import { isInternal, isLocal } from "../utils/server/auth";
+import { isInternal, isLocal } from "../utils/auth";
 import { getToken, validateTokenxToken } from "@navikt/oasis";
 
 export const onRequest = defineMiddleware(async (context, next) => {
