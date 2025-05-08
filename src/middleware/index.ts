@@ -14,7 +14,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   if (!token) {
-    console.info("Could not find any bearer token on the request.");
     return new Response(null, { status: 401 });
   }
 
