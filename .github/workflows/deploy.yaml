@@ -57,7 +57,7 @@ jobs:
     with:
       id: "tms-microfrontend-template-ssr"
       url: "http://tms-microfrontend-template-ssr"
-      appname: "tms-microfrontend-template-ssr"
+      name: "tms-microfrontend-template-ssr"
       namespace: "min-side"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
