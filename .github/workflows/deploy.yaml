@@ -98,23 +98,23 @@ jobs:
           RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
           VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
 
-  deploy-prod:
-    if: github.ref == 'refs/heads/main'
-    runs-on: "ubuntu-latest"
-    permissions:
-      contents: "read"
-      id-token: "write"
-    needs:
-      - build
-      - update-manifest-prod-gcp
-    strategy:
-      matrix:
-        cluster: [ prod-gcp ]
-    steps:
-      - uses: "actions/checkout@v4"
-      - name: "Deploy to prod"
-        uses: "nais/deploy/actions/deploy@v2"
-        env:
-          CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
-          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          
+  # deploy-prod:
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: "ubuntu-latest"
+  #   permissions:
+  #     contents: "read"
+  #     id-token: "write"
+  #   needs:
+  #     - build
+  #     - update-manifest-prod-gcp
+  #   strategy:
+  #     matrix:
+  #       cluster: [ prod-gcp ]
+  #   steps:
+  #     - uses: "actions/checkout@v4"
+  #     - name: "Deploy to prod"
+  #       uses: "nais/deploy/actions/deploy@v2"
+  #       env:
+  #         CLUSTER: ${{ matrix.cluster }}
+  #         RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
+  #         VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          
