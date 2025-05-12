@@ -56,7 +56,7 @@ jobs:
     needs: build
     with:
       id: "tms-microfrontend-template-ssr"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
+      url: "http://tms-microfrontend-template-ssr"
       appname: "tms-microfrontend-template-ssr"
       namespace: "min-side"
       cluster: dev-gcp
@@ -64,19 +64,19 @@ jobs:
       ssr: true
     secrets: inherit
 
-  update-manifest-prod-gcp:
-    if: github.ref == 'refs/heads/main'
-    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
-    needs: build
-    with:
-      id: "tms-microfrontend-template-ssr-id"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
-      name: "tms-microfrontend-template-ssr"
-      namespace: "team-namespace"
-      cluster: prod-gcp
-      commitmsg: ${{ github.event.head_commit.message}}
-      ssr: true
-    secrets: inherit
+  # update-manifest-prod-gcp:
+  #   if: github.ref == 'refs/heads/main'
+  #   uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
+  #   needs: build
+  #   with:
+  #     id: "tms-microfrontend-template-ssr-id"
+  #     url: "http://tms-microfrontend-template-ssr"
+  #     name: "tms-microfrontend-template-ssr"
+  #     namespace: "team-namespace"
+  #     cluster: prod-gcp
+  #     commitmsg: ${{ github.event.head_commit.message}}
+  #     ssr: true
+  #   secrets: inherit
 
   deploy-dev:
     runs-on: "ubuntu-latest"

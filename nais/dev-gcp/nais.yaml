@@ -23,9 +23,6 @@ spec:
     inbound:
       rules:
         - application: tms-min-side
-  ingresses:
-    - "https://www.intern.dev.nav.no/tms-microfrontend-template-ssr"
-    - "https://www.ansatt.dev.nav.no/tms-microfrontend-template-ssr"
   resources:
     limits:
       memory: 768Mi
