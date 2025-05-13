@@ -22,13 +22,13 @@ const language = Astro.currentLocale as Language;
 ---
 
 <section class="tms-microfrontend-template-ssr">
-    <div class={styles.microfrontend}>
-        <Heading size="medium" level="2">
-          {text.title[language]}
-        </Heading>
-        <BodyShort>
-          {text.name[language]}: {exampleData.name}
-        </BodyShort>
-        <ClientIsland client:only="react" />
-    </div>
+  <div class={styles.microfrontend}>
+    <Heading size="medium" level="2">
+      {text.title[language]}
+    </Heading>
+    <BodyShort>
+      {text.name[language]}: {exampleData.name}
+    </BodyShort>
+    <ClientIsland client:only="react" />
+  </div>
 </section>

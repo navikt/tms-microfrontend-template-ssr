@@ -16,9 +16,6 @@ const language = Astro.currentLocale as Language;
     <Heading size="medium" level="2">
       {text.title[language]}
     </Heading>
-    <BodyShort>
-      {text.name[language]}: En feil oppstod under lasting av data.
-    </BodyShort>
     <ClientIsland client:only="react" />
   </div>
 </section>
