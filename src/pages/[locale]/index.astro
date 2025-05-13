@@ -7,7 +7,6 @@ import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
 
-let isError: boolean = false;
 const logger = pino().logger;
 const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
 
@@ -16,17 +15,14 @@ const exampleData: any = await fetch(exampleApiUrl)
   .then((data) => data)
   .catch((error) => {
     logger.error("Error fetching example data:", error);
-    Astro.response.status = 503;
-    isError = true;
+    return new Response("Internal server error", { status: 503 });
   });
 
 const language = Astro.currentLocale as Language;
 ---
 
-{
-  isError ? null : (
-    <section class="tms-microfrontend-template-ssr">
-      <div class={styles.microfrontend}>
+<section class="tms-microfrontend-template-ssr">
+    <div class={styles.microfrontend}>
         <Heading size="medium" level="2">
           {text.title[language]}
         </Heading>
@@ -34,7 +30,5 @@ const language = Astro.currentLocale as Language;
           {text.name[language]}: {exampleData.name}
         </BodyShort>
         <ClientIsland client:only="react" />
-      </div>
-    </section>
-  )
-}
+    </div>
+</section>
