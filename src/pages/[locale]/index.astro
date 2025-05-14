@@ -1,13 +1,12 @@
 ---
-import pino from "pino-http";
 import { Heading, BodyShort } from "@navikt/ds-react";
 import { text } from "@src/language/text";
 import ClientIsland from "@src/components/ClientIsland";
+import logger from "@src/utils/logger";
 import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
 
-const logger = pino().logger;
 const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
 
 const exampleData: any = await fetch(exampleApiUrl)
