@@ -3,18 +3,24 @@ import { Heading, BodyShort } from "@navikt/ds-react";
 import { text } from "@src/language/text";
 import ClientIsland from "@src/components/ClientIsland";
 import logger from "@src/utils/logger";
+import { getOboToken } from "@src/utils/token";
 import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
 
 const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
 
-const exampleData: any = await fetch(exampleApiUrl)
+const exampleData: any = await fetch(exampleApiUrl, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${getOboToken(Astro.locals.token)}`,
+  },
+})
   .then((response) => response.json())
-  .then((data) => data)
   .catch((error) => {
     logger.error("Error fetching example data:", error);
-    return new Response("Internal server error", { status: 503 });
+    return { error: "Internal server error" };
   });
 
 const language = Astro.currentLocale as Language;
