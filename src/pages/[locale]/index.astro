@@ -9,6 +9,7 @@ import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
 
 const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
+let isErorr: boolean = false;
 
 const exampleData: any = await fetch(exampleApiUrl, {
   method: "GET",
@@ -19,14 +20,21 @@ const exampleData: any = await fetch(exampleApiUrl, {
 })
   .then((response) => {
     if (!response.ok) {
-      return new Response("HTTP Error", { status: 503 });
+      logger.error(`Error fetching example data: ${response.statusText} with  ${response.status}`);
+      isErorr = true;
     }
     return response.json();
   })
   .catch((error) => {
     logger.error("Error fetching example data:", error);
-    return { error: "Internal server error" };
+    isErorr = true;
   });
+
+if (isErorr) {
+  return new Response("Internal Server Error", {
+    status: 503,
+  });
+}
 
 const language = Astro.currentLocale as Language;
 ---

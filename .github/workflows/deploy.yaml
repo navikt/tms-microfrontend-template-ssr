@@ -51,7 +51,7 @@ jobs:
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
 
-  update-manifest-dev-gcp:
+  update-manifest-dev:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
@@ -64,7 +64,7 @@ jobs:
       ssr: true
     secrets: inherit
 
-  # update-manifest-prod-gcp:
+  # update-manifest-prod:
   #   if: github.ref == 'refs/heads/main'
   #   uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
   #   needs: build
@@ -83,19 +83,14 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    needs:
-      - build
-      - update-manifest-dev-gcp
-    strategy:
-      matrix:
-        cluster: [ dev-gcp ]
+    needs: [build, update-manifest-dev]
     steps:
       - uses: "actions/checkout@v4"
       - name: "Deploy to dev"
         uses: "nais/deploy/actions/deploy@v2"
         env:
-          CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
+          CLUSTER: dev-gcp
+          RESOURCE: nais/dev-gcp/nais.yaml
           VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
 
   # deploy-prod:
@@ -104,17 +99,13 @@ jobs:
   #   permissions:
   #     contents: "read"
   #     id-token: "write"
-  #   needs:
-  #     - build
-  #     - update-manifest-prod-gcp
-  #   strategy:
-  #     matrix:
-  #       cluster: [ prod-gcp ]
+  #   needs: [build, update-manifest-prod]
+
   #   steps:
   #     - uses: "actions/checkout@v4"
   #     - name: "Deploy to prod"
   #       uses: "nais/deploy/actions/deploy@v2"
   #       env:
-  #         CLUSTER: ${{ matrix.cluster }}
-  #         RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
+  #         CLUSTER: prod-gcp
+  #         RESOURCE: nais/prod-gcp/nais.yaml
   #         VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          

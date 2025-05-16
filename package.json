@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev --mode locals",
     "start": "astro dev",
-    "build": "astro check && astro build --mode locals",
+    "build": "astro check && astro build",
     "mock": "tsx mock/server.ts",
     "preview": "astro preview",
     "astro": "astro",
@@ -13,7 +13,6 @@
     "prettier": "prettier --write './src/**/*.{ts,tsx,astro}'"
   },
   "dependencies": {
-    "@amplitude/analytics-browser": "2.5.3",
     "@astrojs/check": "^0.9.4",
     "@astrojs/node": "^9.0.0",
     "@astrojs/react": "^4.1.2",
