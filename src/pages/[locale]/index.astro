@@ -17,7 +17,12 @@ const exampleData: any = await fetch(exampleApiUrl, {
     Authorization: `Bearer ${getOboToken(Astro.locals.token)}`,
   },
 })
-  .then((response) => response.json())
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error with status code: ${response.status}, and status text: ${response.statusText}`);
+    }
+    return response.json();
+  })
   .catch((error) => {
     logger.error("Error fetching example data:", error);
     return { error: "Internal server error" };
