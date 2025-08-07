@@ -39,5 +39,19 @@
     "prettier": "3.3.3",
     "tsx": "4.7.1",
     "typescript": "5.3.3"
+  },
+  "prettier": {
+    "plugins": ["prettier-plugin-astro"],
+    "semi": true,
+    "tabWidth": 2,
+    "printWidth": 120,
+    "overrides": [
+      {
+        "files": "*.astro",
+        "options": {
+          "parser": "astro"
+        }
+      }
+    ]
   }
 }
