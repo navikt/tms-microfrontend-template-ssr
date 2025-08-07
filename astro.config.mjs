@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import { rollupImportMapPlugin } from "rollup-plugin-import-map";
 import importmap from "./importmap.json";
 import react from "@astrojs/react";
@@ -51,4 +51,13 @@ export default defineConfig({
   adapter: node({
     mode: "standalone",
   }),
+  env: {
+    schema: {
+      EXAMPLE_API_URL: envField.string({
+        context: "server",
+        access: "secret",
+        default: "http://localhost:3000/api/tms-astro-template"
+      }),
+    }
+  }
 });

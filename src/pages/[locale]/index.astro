@@ -5,16 +5,16 @@ import ClientIsland from "@src/components/ClientIsland";
 import logger from "@src/utils/logger";
 import { getOboToken } from "@src/utils/token";
 import { fetchExampleData } from "../../utils/fetch";
+import { EXAMPLE_API_URL } from "astro:env/server";
 import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
 
 const oboToken = await getOboToken(Astro.locals.token);
-const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
 let exampleData;
 
 try {
-  exampleData = await fetchExampleData(oboToken, exampleApiUrl);
+  exampleData = await fetchExampleData(oboToken, EXAMPLE_API_URL);
 } catch (error) {
   logger.error("Error fetching example data:", error);
   return new Response("Internal Server Error", { status: 503 });
