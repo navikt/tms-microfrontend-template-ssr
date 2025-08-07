@@ -9,6 +9,7 @@ import prefixer from "postcss-prefix-selector";
 export default defineConfig({
   build: {
     assetsPrefix: "https://cdn.nav.no/min-side/tms-microfrontend-test",
+    inlineStylesheets: "always",
   },
   vite: {
     css: {
