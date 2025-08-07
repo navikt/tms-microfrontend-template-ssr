@@ -8,7 +8,7 @@ import prefixer from "postcss-prefix-selector";
 // https://astro.build/config
 export default defineConfig({
   build: {
-    assetsPrefix: "https://cdn.nav.no/min-side/tms-microfrontend-test",
+    assetsPrefix: "https://cdn.nav.no/min-side/tms-microfrontend-template-ssr",
     inlineStylesheets: "always",
   },
   vite: {
