@@ -20,11 +20,12 @@
     "@navikt/ds-css": "6.16.2",
     "@navikt/ds-react": "6.16.2",
     "@navikt/oasis": "^3.4.0",
+    "@opentelemetry/sdk-node": "0.202.0",
     "astro": "^5.1.1",
-    "pino-http": "^10.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rollup-plugin-import-map": "3.0.0"
+    "rollup-plugin-import-map": "3.0.0",
+    "pino": "^9.7.0"
   },
   "devDependencies": {
     "@hono/node-server": "1.11.2",
@@ -41,7 +42,9 @@
     "typescript": "5.3.3"
   },
   "prettier": {
-    "plugins": ["prettier-plugin-astro"],
+    "plugins": [
+      "prettier-plugin-astro"
+    ],
     "semi": true,
     "tabWidth": 2,
     "printWidth": 120,
