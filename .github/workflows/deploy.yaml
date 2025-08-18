@@ -59,7 +59,7 @@ jobs:
       namespace: "min-side"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
-      fallback: "http://tms-microfrontend-template-ssr/fallback"
+      fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/...
       ssr: true
     secrets: inherit
 
@@ -74,7 +74,7 @@ jobs:
   #     namespace: "team-namespace"
   #     cluster: prod-gcp
   #     commitmsg: ${{ github.event.head_commit.message}}
-  #     fallback: "http://tms-microfrontend-template-ssr/fallback"
+  #     fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/...
   #     ssr: true
   #   secrets: inherit
 
