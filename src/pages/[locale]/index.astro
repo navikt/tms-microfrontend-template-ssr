@@ -23,14 +23,25 @@ try {
 const language = Astro.currentLocale as Language;
 ---
 
-<section class="tms-microfrontend-template-ssr">
-  <div class={styles.microfrontend}>
-    <Heading size="medium" level="2">
-      {text.title[language]}
-    </Heading>
-    <BodyShort>
-      {text.name[language]}: {exampleData.name}
-    </BodyShort>
-    <ClientIsland client:only="react" />
-  </div>
-</section>
+<>
+  <section class="tms-microfrontend-template-ssr">
+    <div class={styles.microfrontend} id="microfrontend">
+      <Heading size="medium" level="2">
+        {text.title[language]}
+      </Heading>
+      <BodyShort>
+        {text.name[language]}: {exampleData.name}
+      </BodyShort>
+      <ClientIsland client:only="react" />
+    </div>
+  </section>
+  <script>
+    import { logEvent } from "@src/utils/amplitude";
+
+    const microfrontend = document.querySelector("#microfrontend");
+
+    microfrontend?.addEventListener("click", () => {
+      logEvent("komponent", "kategori", "lenketekst");
+    });
+  </script>
+</>
