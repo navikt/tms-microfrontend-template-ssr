@@ -35,15 +35,11 @@ const language = Astro.currentLocale as Language;
   </div>
 </section>
 <script>
-  import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
+  import { logEvent } from "@src/utils/analytics";
 
-  const analyticsLogger = getAnalyticsInstance("tms-microfrontend-template-ssr");
+  const microfrontend = document.querySelector("#microfrontend");
 
-  export const logEvent = (data: string, kategori: string, lenketekst: string) => {
-    analyticsLogger("navigere", { komponent: data, kategori: kategori, lenketekst: lenketekst })};
-    const microfrontend = document.querySelector("#microfrontend");
-
-    microfrontend?.addEventListener("click", () => {
-      logEvent("komponent", "kategori", "lenketekst");
-    });
+  microfrontend?.addEventListener("click", () => {
+    logEvent();
+  });
 </script>
