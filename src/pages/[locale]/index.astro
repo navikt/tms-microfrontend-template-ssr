@@ -23,33 +23,23 @@ try {
 const language = Astro.currentLocale as Language;
 ---
 
-<>
-  <section class="tms-microfrontend-template-ssr">
-    <div class={styles.microfrontend} id="microfrontend">
-      <Heading size="medium" level="2">
-        {text.title[language]}
-      </Heading>
-      <BodyShort>
-        {text.name[language]}: {exampleData.name}
-      </BodyShort>
-      <ClientIsland client:only="react" />
-    </div>
-  </section>
-  <script>
-    import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
-    import { logger } from "@src/utils/logger";
+<section class="tms-microfrontend-template-ssr">
+  <div class={styles.microfrontend} id="microfrontend">
+    <Heading size="medium" level="2">
+      {text.title[language]}
+    </Heading>
+    <BodyShort>
+      {text.name[language]}: {exampleData.name}
+    </BodyShort>
+    <ClientIsland client:only="react" />
+  </div>
+</section>
+<script>
+  import { logEvent } from "@src/utils/analytics";
 
-    const analyticsLogger = getAnalyticsInstance("dekoratoren");
+  const microfrontend = document.querySelector("#microfrontend");
 
-    export const logEvent = (data: string, kategori: string, lenketekst: string) => {
-      analyticsLogger("navigere", { komponent: data, kategori: kategori, lenketekst: lenketekst }).catch(() =>
-        logger.warn("Uninitialized amplitude"),
-      );
-    };
-    const microfrontend = document.querySelector("#microfrontend");
-
-    microfrontend?.addEventListener("click", () => {
-      logEvent("komponent", "kategori", "lenketekst");
-    });
-  </script>
-</>
+  microfrontend?.addEventListener("click", () => {
+    logEvent();
+  });
+</script>
