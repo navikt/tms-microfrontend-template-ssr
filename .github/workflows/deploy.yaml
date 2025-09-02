@@ -36,15 +36,15 @@ jobs:
       - name: "Upload to cdn"
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          team: min-side
+          team: min-side # Change this to your team name
           source: ./dist/client/_astro
-          destination: 'tms-microfrontend-template-ssr'
+          destination: 'tms-microfrontend-template-ssr' # Change this to your application name
 
       - name: "Build and push"
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
-          team: min-side
+          team: min-side # Change this to your team name
 
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
@@ -53,13 +53,13 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      id: "tms-microfrontend-template-ssr"
-      url: "http://tms-microfrontend-template-ssr"
-      appname: "tms-microfrontend-template-ssr"
-      namespace: "min-side"
+      id: "tms-microfrontend-template-ssr" # Change this to your application name
+      url: "http://tms-microfrontend-template-ssr" # Change the url to contain your application name. Example: http://my-app
+      appname: "tms-microfrontend-template-ssr" # Change this to your application name
+      namespace: "min-side" # Change this to your namespace
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
-      fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/...
+      fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/... Example: "http://tms-microfrontend-template-ssr.dev.nav.no/fallback"
       ssr: true
     secrets: inherit
 
