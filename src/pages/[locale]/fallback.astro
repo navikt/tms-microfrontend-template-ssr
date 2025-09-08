@@ -2,15 +2,17 @@
 // If your microfrontend contains dynamic information that potentially could fails to load, you can create a static version of your microfrontend here that will be displayed to the user instead.
 
 import { Heading } from "@navikt/ds-react";
-import { text } from "@src/language/text";
 import ClientIsland from "@src/components/ClientIsland";
+import { text } from "@src/language/text";
 import type { Language } from "@src/language/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
+import { isLocal } from "../../utils/environment";
 
 const language = Astro.currentLocale as Language;
 ---
 
+{isLocal && <meta charset="UTF-8" />}
 <section class="tms-microfrontend-template-ssr">
   <div class={styles.microfrontend}>
     <Heading size="medium" level="2">

@@ -1,5 +1,5 @@
 {
-    "name": "John Doe",
-    "age": 30,
-    "interests": "Creating Astro apps"
+  "name": "John Doe",
+  "age": 30,
+  "interests": "Creating Astro apps"
 }
