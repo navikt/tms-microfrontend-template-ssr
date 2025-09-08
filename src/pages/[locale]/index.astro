@@ -1,14 +1,15 @@
 ---
-import { Heading, BodyShort } from "@navikt/ds-react";
-import { text } from "@src/language/text";
-import ClientIsland from "@src/components/ClientIsland";
-import { logger } from "@src/utils/logger";
-import { getOboToken } from "@src/utils/token";
-import { fetchExampleData } from "@src/utils/fetch";
 import { EXAMPLE_API_URL } from "astro:env/server";
+import { BodyShort, Heading } from "@navikt/ds-react";
+import ClientIsland from "@src/components/ClientIsland";
+import { text } from "@src/language/text";
 import type { Language } from "@src/language/types";
 import styles from "@src/styles/index.module.css";
+import { fetchExampleData } from "@src/utils/fetch";
+import { logger } from "@src/utils/logger";
+import { getOboToken } from "@src/utils/token";
 import "@src/styles/aksel.css";
+import { isLocal } from "../../utils/environment";
 
 const oboToken = await getOboToken(Astro.locals.token);
 let exampleData;
@@ -23,6 +24,7 @@ try {
 const language = Astro.currentLocale as Language;
 ---
 
+{isLocal && <meta charset="UTF-8" />}
 <section class="tms-microfrontend-template-ssr">
   <div class={styles.microfrontend} id="microfrontend">
     <Heading size="medium" level="2">
@@ -38,6 +40,5 @@ const language = Astro.currentLocale as Language;
   import { logEvent } from "@src/utils/analytics";
 
   const microfrontend = document.querySelector("#microfrontend");
-
   microfrontend?.addEventListener("click", () => logEvent("tekst"));
 </script>
