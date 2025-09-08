@@ -59,7 +59,7 @@ jobs:
       namespace: "min-side" # Change this to your namespace
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
-      fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/... Example: "http://tms-microfrontend-template-ssr.dev.nav.no/fallback"
+      fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/... Only needs to be changed if you move the fallback in the pages structure
       ssr: true
     secrets: inherit
 
