@@ -54,7 +54,7 @@ jobs:
     needs: build
     with:
       id: "tms-microfrontend-template-ssr"
-      url: "http://tms-microfrontend-template-ssr"
+      url: "http://tms-microfrontend-template-ssr.min-side"
       appname: "tms-microfrontend-template-ssr"
       namespace: "min-side"
       cluster: dev-gcp
@@ -69,7 +69,7 @@ jobs:
   #   needs: build
   #   with:
   #     id: "tms-microfrontend-template-ssr-id"
-  #     url: "http://tms-microfrontend-template-ssr"
+  #     url: "http://tms-microfrontend-template-ssr.min-side"
   #     appname: "tms-microfrontend-template-ssr"
   #     namespace: "team-namespace"
   #     cluster: prod-gcp
