@@ -23,7 +23,7 @@ spec:
     inbound:
       rules:
         - application: tms-min-side
-        - namespace: min-side
+          namespace: min-side
   resources:
     limits:
       memory: 768Mi
