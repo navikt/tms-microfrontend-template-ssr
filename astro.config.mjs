@@ -1,9 +1,9 @@
+import node from "@astrojs/node";
+import react from "@astrojs/react";
 import { defineConfig, envField } from "astro/config";
+import prefixer from "postcss-prefix-selector";
 import { rollupImportMapPlugin } from "rollup-plugin-import-map";
 import importmap from "./importmap.json";
-import react from "@astrojs/react";
-import node from "@astrojs/node";
-import prefixer from "postcss-prefix-selector";
 
 // https://astro.build/config
 export default defineConfig({
@@ -56,8 +56,8 @@ export default defineConfig({
       EXAMPLE_API_URL: envField.string({
         context: "server",
         access: "secret",
-        default: "http://localhost:3000/api/tms-astro-template"
+        default: "http://localhost:3000/api/tms-astro-template",
       }),
-    }
-  }
+    },
+  },
 });

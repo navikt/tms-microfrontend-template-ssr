@@ -1,5 +1,5 @@
-import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
 import type { AmplitudeEvent } from "@navikt/nav-dekoratoren-moduler";
+import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
 
 type ExtendedAmpltitudeEvent = AmplitudeEvent<"navigere", { lenketekst: string }>;
 
