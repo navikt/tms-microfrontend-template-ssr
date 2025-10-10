@@ -53,7 +53,7 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      id: "tms-microfrontend-template-ssr" # Change this to your application name
+      id: "tms-microfrontend-template-ssr" # Change this to your microfrontend id.
       url: "http://tms-microfrontend-template-ssr" # Change the url to contain your application name. Example: http://my-app
       appname: "tms-microfrontend-template-ssr" # Change this to your application name
       namespace: "min-side" # Change this to your namespace
