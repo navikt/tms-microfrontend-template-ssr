@@ -21,7 +21,7 @@
     "@navikt/nav-dekoratoren-moduler": "3.2.3",
     "@navikt/oasis": "3.4.0",
     "@opentelemetry/sdk-node": "0.202.0",
-    "astro": "5.1.1",
+    "astro": "5.14.4",
     "pino": "9.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
