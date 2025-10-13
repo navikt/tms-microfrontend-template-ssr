@@ -6,6 +6,10 @@ metadata:
   labels:
     team: min-side # Change this to your team name
 spec:
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
   tokenx:
     enabled: true
   image: {{ image }}
