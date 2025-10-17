@@ -54,7 +54,7 @@ jobs:
     needs: build
     with:
       id: "tms-microfrontend-template-ssr" # Change this to your microfrontend id.
-      url: "http://tms-microfrontend-template-ssr" # Change the url to contain your application name. Example: http://my-app
+      url: "http://tms-microfrontend-template-ssr.min-side" # Change the url to contain your application name. Example: http://my-app.namespace
       appname: "tms-microfrontend-template-ssr" # Change this to your application name
       namespace: "min-side" # Change this to your namespace
       cluster: dev-gcp
