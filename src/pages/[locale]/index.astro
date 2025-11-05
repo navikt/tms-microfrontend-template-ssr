@@ -9,15 +9,16 @@ import { fetchExampleData } from "@src/utils/fetch";
 import { logger } from "@src/utils/logger";
 import { getOboToken } from "@src/utils/token";
 import "@src/styles/aksel.css";
-import { isLocal } from "../../utils/environment";
+import { isLocal } from "@src/utils/environment";
+import { ExampleData } from "@src/utils/types";
 
 const oboToken = await getOboToken(Astro.locals.token);
-let exampleData;
+let exampleData: ExampleData;
 
 try {
   exampleData = await fetchExampleData(oboToken, EXAMPLE_API_URL);
 } catch (error) {
-  logger.error("Error fetching example data: " + error);
+  logger.error(`Error fetching example data: ${error}`);
   return new Response("Internal Server Error", { status: 503 });
 }
 
