@@ -30,7 +30,23 @@
     }
   },
   "html": { "formatter": { "selfCloseVoidElements": "always" } },
-  "overrides": [{ "includes": ["*.astro"] }],
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useConst": "off",
+            "useImportType": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": { "source": { "organizeImports": "on" } }
