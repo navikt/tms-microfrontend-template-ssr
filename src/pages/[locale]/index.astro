@@ -10,7 +10,7 @@ import { logger } from "@src/utils/logger";
 import { getOboToken } from "@src/utils/token";
 import "@src/styles/aksel.css";
 import { isLocal } from "@src/utils/environment";
-import { ExampleData } from "@src/utils/types";
+import type { ExampleData } from "@src/utils/types";
 
 const oboToken = await getOboToken(Astro.locals.token);
 let exampleData: ExampleData;
