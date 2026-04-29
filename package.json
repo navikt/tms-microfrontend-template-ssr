@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "tsx mock/server.ts & astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "mock": "tsx mock/server.ts",
@@ -41,6 +41,8 @@
     "typescript": "5.9.3"
   },
   "lint-staged": {
-    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,astro}": ["biome check --write --no-errors-on-unmatched"]
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,astro}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   }
 }

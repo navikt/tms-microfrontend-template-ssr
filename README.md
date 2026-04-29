@@ -17,10 +17,9 @@ NOTE: Du bør se på konteksten i filen du endrer.
 
 # Kjøre appen lokalt
 
-1. Installer dependencies: `npm i`
-2. Start hono mockserver: `npm run mock`
-3. Med mockserver kjørende i egen terminal, start appen: `npm run dev`
-4. Appen nås på http://localhost:4321/
+1. Installer dependencies: `npm install`
+2. Start appen med `npm run dev`, mockserver kjører på http://localhost:3000
+3. Appen nås på http://localhost:4321/
 
 # Henvendelser
 
