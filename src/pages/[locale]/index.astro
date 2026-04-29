@@ -1,16 +1,15 @@
 ---
 import { EXAMPLE_API_URL } from "astro:env/server";
 import { BodyShort, Heading, Link } from "@navikt/ds-react";
-import ClientIsland from "@src/components/ClientIsland";
+import { logger } from "@navikt/pino-logger";
 import { text } from "@src/language/text";
 import type { Language } from "@src/language/types";
 import styles from "@src/styles/index.module.css";
-import { fetchExampleData } from "@src/utils/fetch";
-import { logger } from "@src/utils/logger";
-import { getOboToken } from "@src/utils/token";
-import "@src/styles/aksel.css";
 import { isLocal } from "@src/utils/environment";
+import { fetchExampleData } from "@src/utils/fetch";
+import { getOboToken } from "@src/utils/token";
 import type { ExampleData } from "@src/utils/types";
+import "@src/styles/aksel.css";
 
 const oboToken = await getOboToken(Astro.locals.token);
 let exampleData: ExampleData;
@@ -26,9 +25,9 @@ const language = Astro.currentLocale as Language;
 ---
 
 {isLocal && <meta charset="UTF-8" />}
-<section class="tms-microfrontend-template-ssr">
+<div class="tms-microfrontend-template-ssr">
   <div class={styles.microfrontend}>
-    <Heading size="medium" level="2">
+    <Heading size="medium" level="3">
       {text.title[language]}
     </Heading>
     <BodyShort>
@@ -37,12 +36,5 @@ const language = Astro.currentLocale as Language;
     <Link href="#" id="link">
       {text.link[language]}
     </Link>
-    <ClientIsland client:only="react" />
   </div>
-</section>
-<script>
-  import { logEvent } from "@src/utils/analytics";
-
-  const microfrontend = document.querySelector("#link");
-  microfrontend?.addEventListener("click", () => logEvent("Lenke"));
-</script>
+</div>

@@ -12,34 +12,33 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.4",
-    "@astrojs/node": "9.0.0",
-    "@astrojs/react": "4.1.2",
-    "@navikt/aksel-icons": "6.1.1",
-    "@navikt/ds-css": "6.16.2",
-    "@navikt/ds-react": "6.16.2",
+    "@astrojs/check": "0.9.9",
+    "@astrojs/node": "10.0.6",
+    "@astrojs/react": "5.0.4",
+    "@navikt/aksel-icons": "8.10.3",
+    "@navikt/ds-css": "8.10.3",
+    "@navikt/ds-react": "8.10.3",
     "@navikt/nav-dekoratoren-moduler": "3.2.3",
     "@navikt/oasis": "3.4.0",
-    "@opentelemetry/sdk-node": "0.202.0",
-    "astro": "5.16.15",
-    "pino": "9.7.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "rollup-plugin-import-map": "3.0.0"
+    "@navikt/pino-logger": "5.0.0",
+    "astro": "6.1.10",
+    "pino": "10.3.1",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.3",
-    "@hono/node-server": "1.11.2",
+    "@biomejs/biome": "2.4.13",
+    "@hono/node-server": "2.0.0",
     "@types/node": "24.1.0",
-    "@types/react": "18.2.64",
-    "@types/react-dom": "18.2.21",
-    "hono": "4.6.5",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "hono": "4.12.15",
     "husky": "9.1.7",
     "lint-staged": "16.1.6",
-    "postcss": "8.5.3",
+    "postcss": "8.5.12",
     "postcss-prefix-selector": "2.1.1",
-    "tsx": "4.7.1",
-    "typescript": "5.3.3"
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,astro}": ["biome check --write --no-errors-on-unmatched"]

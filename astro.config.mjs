@@ -2,8 +2,6 @@ import node from "@astrojs/node";
 import react from "@astrojs/react";
 import { defineConfig, envField } from "astro/config";
 import prefixer from "postcss-prefix-selector";
-import { rollupImportMapPlugin } from "rollup-plugin-import-map";
-import importmap from "./importmap.json";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,35 +14,20 @@ export default defineConfig({
       postcss: {
         plugins: [
           prefixer({
-            prefix: ".tms-microfrontend-template-ssr",
+            prefix: ":where(.tms-microfrontend-template-ssr)",
             ignoreFiles: [/module.css/],
           }),
         ],
       },
     },
   },
-  integrations: [
-    react(),
-    {
-      name: "importmap",
-      hooks: {
-        "astro:build:setup": ({ vite, target }) => {
-          if (target === "client") {
-            vite.plugins.push({
-              ...rollupImportMapPlugin(importmap),
-              enforce: "pre",
-              apply: "build",
-            });
-          }
-        },
-      },
-    },
-  ],
+  integrations: [react()],
   i18n: {
     defaultLocale: "nb",
     locales: ["nb", "nn", "en"],
     routing: {
       prefixDefaultLocale: true,
+      redirectToDefaultLocale: true,
     },
   },
   output: "server",
