@@ -1,7 +1,7 @@
 import { getToken, validateTokenxToken } from "@navikt/oasis";
 import { logger } from "@navikt/pino-logger";
 import { defineMiddleware } from "astro/middleware";
-import { isInternal, isLocal } from "../utils/environment";
+import { isInternal, isLocal } from "./utils/environment.ts";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const token = getToken(context.request.headers);
@@ -21,7 +21,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const validation = await validateTokenxToken(token);
 
   if (!validation.ok) {
-    const error = new Error(`Invalid JWT token found (cause: ${validation.errorType} ${validation.error}.`);
+    const error = new Error(
+      `Invalid JWT token found (cause: ${validation.errorType} ${validation.error}.`,
+    );
     logger.error(error);
     return new Response(null, { status: 401 });
   }
